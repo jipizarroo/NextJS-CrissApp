@@ -16,16 +16,45 @@ enum ROLE_TYPES {
 }
 
 model User {
-  id      Int      @id @default(autoincrement())
-  email   String   @unique
-  name    String?
-  role    ROLE_TYPES     @default(USER)
-  profile Profile?
+  id        Int        @id @default(autoincrement())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  password  String
+  email     String     @unique
+  name      String
+  age       String?
+  role      ROLE_TYPES @default(USER)
+  profile   Profile?
+  race      Races[]
 }
 
 model Profile {
-  id     Int    @id @default(autoincrement())
-  bio    String
-  user   User   @relation(fields: [userId], references: [id])
-  userId Int    @unique
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int      @unique
+}
+
+model Foods {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  brand     String
+  unit      String
+  grams     Int
+  calories  Int
+  carbs     Int
+  cafeine   Int
+}
+
+model Races {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  stages      Json
+  User        User?    @relation(fields: [userId], references: [id])
+  userId      Int?
+  isUserAdmin Boolean  @default(false)
 }
