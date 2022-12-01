@@ -24,16 +24,8 @@ model User {
   name      String
   age       String?
   role      ROLE_TYPES @default(USER)
-  profile   Profile?
-  race      Races[]
-}
-
-model Profile {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  user      User     @relation(fields: [userId], references: [id])
-  userId    Int      @unique
+  races     Races[]
+  foods     Foods[]
 }
 
 model Foods {
@@ -47,6 +39,8 @@ model Foods {
   calories  Int
   carbs     Int
   cafeine   Int
+  User      User?    @relation(fields: [userId], references: [id])
+  userId    Int?
 }
 
 model Races {
