@@ -52,6 +52,7 @@ model Races {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  name        String
   stages      Json
   userId      Int?
   isUserAdmin Boolean  @default(false)

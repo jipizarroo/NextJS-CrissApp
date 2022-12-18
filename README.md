@@ -29,6 +29,8 @@ npx prisma studio
 npx prisma migrate reset db
 
 npx prisma db seed
+
+
 para resetear la db debemos borrar las migraciones, PORFAVOR NO HACER ESTO DESPUES DE TENER DATA EN ESTO.
 
 

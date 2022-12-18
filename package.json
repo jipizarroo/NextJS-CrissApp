@@ -9,17 +9,17 @@
   },
   "dependencies": {
     "@chakra-ui/layout": "^1.5.1",
-    "@chakra-ui/react": "^1.7.2",
+    "@chakra-ui/react": "^1.8.9",
     "@dh-react-hooks/use-raf": "^0.9.1",
-    "@emotion/react": "^11.6.0",
-    "@emotion/styled": "^11.6.0",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@prisma/client": "^3.6.0",
     "bcrypt": "^5.0.1",
     "cookie": "^0.4.1",
     "cookies": "^0.8.0",
     "easy-peasy": "^5.0.4",
     "format-duration": "^1.4.0",
-    "framer-motion": "^4.1.17",
+    "framer-motion": "^6.5.1",
     "jsonwebtoken": "^8.5.1",
     "next": "^12.3.4",
     "react": "17.0.2",
@@ -30,6 +30,7 @@
     "swr": "^1.1.1"
   },
   "devDependencies": {
+    "@types/node": "^18.11.17",
     "@types/react": "^17.0.37",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",
@@ -45,7 +46,8 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^2.4.1",
     "prisma": "^3.6.0",
-    "ts-node": "^10.4.0"
+    "ts-node": "^10.4.0",
+    "typescript": "4.9.4"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"

@@ -31,7 +31,7 @@ const AuthForm: FC<{ mode: 'signin' | 'signup' }> = ({ mode }) => {
         height="100px"
         borderBottom="white 1px solid"
       >
-        Hola
+        Logo Cris
       </Flex>
       <Flex justify="center" align="center" height="calc(100vh - 100px)">
         <Box padding="50px" bg="gray.900" borderRadius="6px">
