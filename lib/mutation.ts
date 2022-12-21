@@ -6,3 +6,7 @@ export const auth = (
 ) => {
   return fetcher(`/${mode}`, body)
 }
+
+export const createRaceAPI = (body: { name: string; stages: JSON }) => {
+  return fetcher('/races/createrace', body)
+}

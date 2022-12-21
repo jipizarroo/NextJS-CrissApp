@@ -1,5 +1,6 @@
 import NextImage from 'next/image'
 import NextLink from 'next/link'
+import { useRouter } from 'next/router'
 import {
   Box,
   List,
@@ -15,7 +16,7 @@ const navMenu = [
   {
     name: 'Home',
     icon: FaHome,
-    route: '',
+    route: '/',
   },
   {
     name: 'Perfil',

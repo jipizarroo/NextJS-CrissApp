@@ -20,3 +20,13 @@ export const usePublicFoods = () => {
     isError: error,
   }
 }
+
+export const useFindAllRaces = () => {
+  const { data, error } = useSWR('/races/findallraces', fetcher)
+
+  return {
+    races: data as any,
+    isLoading: !data && !error,
+    isError: error,
+  }
+}

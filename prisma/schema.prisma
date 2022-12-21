@@ -54,9 +54,9 @@ model Races {
   updatedAt   DateTime @updatedAt
   name        String
   stages      Json
-  userId      Int?
+  belongsToId Int?
+  belongsTo   User?    @relation(fields: [belongsToId], references: [id])
   isUserAdmin Boolean  @default(false)
-  User        User?    @relation(fields: [userId], references: [id])
 }
 
 enum ROLE_TYPES {

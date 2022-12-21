@@ -1,6 +1,6 @@
 import prisma from '../../lib/prisma'
 
-export const createRace = async (req, res, next) => {
+export const createRace = async (req, res) => {
   try {
     const race = await prisma.races.create({
       data: {
@@ -11,6 +11,6 @@ export const createRace = async (req, res, next) => {
     })
     res.json({ data: race })
   } catch (e) {
-    next(e)
+    res.json({ data: e })
   }
 }

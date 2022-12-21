@@ -11,15 +11,10 @@ import {
   ButtonGroup,
 } from '@chakra-ui/react'
 import { usePublicFoods } from '../lib/hooks'
-import prisma from '../lib/prisma'
 
 const Home = () => {
   const { publicfoods } = usePublicFoods()
-  return (
-    <Box>
-      Olis
-    </Box>
-  )
+  return <Box>Olis</Box>
 }
 
 export default Home
