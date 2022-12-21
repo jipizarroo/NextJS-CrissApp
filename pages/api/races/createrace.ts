@@ -7,11 +7,13 @@ export default validateRoute(async (req, res) => {
       data: {
         name: req.body.name,
         stages: req.body.stages,
-        belongsToId: req.user.id,
+        belongsTo: {
+          connect: { id: req.body.belongsToId },
+        },
       },
     })
     res.status(200).json({ data: race })
   } catch (e) {
-    res.json({ err: 'Error occured creating the race.' })
+    res.json({ err: e })
   }
 })

@@ -54,8 +54,8 @@ model Races {
   updatedAt   DateTime @updatedAt
   name        String
   stages      Json
-  belongsToId Int?
-  belongsTo   User?    @relation(fields: [belongsToId], references: [id])
+  belongsToId Int
+  belongsTo   User    @relation(fields: [belongsToId], references: [id])
   isUserAdmin Boolean  @default(false)
 }
 
