@@ -8,12 +8,12 @@ export default validateRoute(async (req, res) => {
         name: req.body.name,
         stages: req.body.stages,
         belongsTo: {
-          connect: { id: req.body.belongsToId },
+          connect: { id: req.body.belongsTo },
         },
       },
     })
     res.status(200).json({ data: race })
   } catch (e) {
-    res.json({ err: e })
+    return res.status(500).send({ success: false })
   }
 })

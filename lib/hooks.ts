@@ -5,7 +5,7 @@ export const useMe = () => {
   const { data, error } = useSWR('/me', fetcher)
 
   return {
-    return: data,
+    user: data,
     isLoading: !data && !error,
     isError: error,
   }

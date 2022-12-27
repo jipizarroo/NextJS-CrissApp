@@ -4,6 +4,7 @@ import { Box, Text, Flex, Card } from '@chakra-ui/layout'
 import { Button, Input } from '@chakra-ui/react'
 import { createRaceAPI } from '../../lib/mutation'
 import { validateToken } from '../../lib/auth'
+import { useMe } from '../../lib/hooks'
 
 const CreateRaceForm = () => {
   const [name, setName] = useState(null)
@@ -14,6 +15,9 @@ const CreateRaceForm = () => {
 
   const [isLoading, setIsLoading] = useState(false)
 
+  const { user } = useMe()
+  const belongsTo = user?.id
+
   const router = useRouter()
 
   useEffect(() => {
@@ -22,18 +26,17 @@ const CreateRaceForm = () => {
       stage2,
       stage3,
     })
-  }, [stage1, stage2, stage3])
+  }, [stage1, stage2, stage3, user])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsLoading(true)
 
-    console.log(name, stages)
-    // await createRaceAPI({ name, stages })
+    await createRaceAPI({ name, stages, belongsTo })
 
     setIsLoading(false)
 
-    router.push('/races')
+    // router.push('/races')
   }
 
   return (

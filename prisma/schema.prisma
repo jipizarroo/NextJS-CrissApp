@@ -8,16 +8,17 @@ datasource db {
 }
 
 model User {
-  id        Int        @id @default(autoincrement())
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  password  String
-  email     String     @unique
-  name      String
-  age       String?
-  role      ROLE_TYPES @default(USER)
-  foods     Foods[]
-  races     Races[]
+  id           Int            @id @default(autoincrement())
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  password     String
+  email        String         @unique
+  name         String
+  age          String?
+  role         ROLE_TYPES     @default(USER)
+  foods        Foods[]
+  races        Races[]
+  UserStrategy UserStrategy[]
 }
 
 model Foods {
@@ -49,14 +50,26 @@ model PublicFoods {
 }
 
 model Races {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  name        String
-  stages      Json
-  belongsToId Int
-  belongsTo   User    @relation(fields: [belongsToId], references: [id])
-  isUserAdmin Boolean  @default(false)
+  id           Int            @id @default(autoincrement())
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  name         String
+  stages       Json
+  belongsToId  Int
+  belongsTo    User           @relation(fields: [belongsToId], references: [id])
+  isUserAdmin  Boolean        @default(false)
+  UserStrategy UserStrategy[]
+}
+
+model UserStrategy {
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  foodGrup      Json
+  belongsToId   Int
+  belongsTo     User     @relation(fields: [belongsToId], references: [id])
+  belongsToRace Races    @relation(fields: [racesId], references: [id])
+  racesId       Int
 }
 
 enum ROLE_TYPES {
