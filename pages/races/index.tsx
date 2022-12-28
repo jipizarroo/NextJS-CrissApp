@@ -7,6 +7,10 @@ import RaceCard from '../../components/raceCard'
 const RacesMain = () => {
   const { races } = useFindAllRaces()
 
+  const handleRacePick = (e) => {
+    e.preventDefault()
+  }
+
   return (
     <Box width="100%" height="100%" bg="green">
       <Box width="100wh" height="100px" bg="red">
@@ -21,10 +25,18 @@ const RacesMain = () => {
       <Box>
         <Flex>
           {races?.map((race) => (
-            <Box margin="20px">
-              {console.log(race)}
-              <RaceCard data={race.name} />
-            </Box>
+            <NextLink
+              href={{
+                pathname: '/strategy/createstrat',
+                query: race,
+              }}
+              as="/strategy/createstrat"
+              key={race.id}
+            >
+              <Box margin="20px" cursor="pointer">
+                <RaceCard data={race.name} />
+              </Box>
+            </NextLink>
           ))}
         </Flex>
       </Box>
