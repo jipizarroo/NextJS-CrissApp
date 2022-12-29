@@ -11,7 +11,7 @@ export const useMe = () => {
   }
 }
 
-export const usePublicFoods = () => {
+export const useFindAllPublicFoods = () => {
   const { data, error } = useSWR('/publicfoods', fetcher)
 
   return {
