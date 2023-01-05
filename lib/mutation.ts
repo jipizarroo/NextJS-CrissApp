@@ -14,3 +14,11 @@ export const createRaceAPI = (body: {
 }) => {
   return fetcher('/races/createrace', body)
 }
+
+export const createStrategyAPI = (body: {
+  foodGroup: JSON
+  belongsTo: number
+  belongsToRace: number
+}) => {
+  return fetcher('/strategy/createstrategy', body)
+}
