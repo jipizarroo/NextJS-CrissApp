@@ -53,11 +53,24 @@ CREATE TABLE "Races" (
     "id" SERIAL NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "name" TEXT NOT NULL,
     "stages" JSONB NOT NULL,
-    "userId" INTEGER,
+    "belongsToId" INTEGER NOT NULL,
     "isUserAdmin" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Races_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "UserStrategy" (
+    "id" SERIAL NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "foodGroup" JSONB NOT NULL,
+    "belongsToId" INTEGER NOT NULL,
+    "racesId" INTEGER NOT NULL,
+
+    CONSTRAINT "UserStrategy_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -67,4 +80,10 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 ALTER TABLE "Foods" ADD CONSTRAINT "Foods_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Races" ADD CONSTRAINT "Races_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Races" ADD CONSTRAINT "Races_belongsToId_fkey" FOREIGN KEY ("belongsToId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserStrategy" ADD CONSTRAINT "UserStrategy_belongsToId_fkey" FOREIGN KEY ("belongsToId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserStrategy" ADD CONSTRAINT "UserStrategy_racesId_fkey" FOREIGN KEY ("racesId") REFERENCES "Races"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
