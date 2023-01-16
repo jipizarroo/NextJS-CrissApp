@@ -10,6 +10,7 @@ import {
   LinkBox,
   LinkOverlay,
 } from '@chakra-ui/layout'
+
 import { FaUserCircle, FaHome, FaRunning } from 'react-icons/fa'
 
 const navMenu = [

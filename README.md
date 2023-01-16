@@ -35,3 +35,8 @@ para resetear la db debemos borrar las migraciones, PORFAVOR NO HACER ESTO DESPU
 
 
 El error que estabamos teniendo en el signup, era pq cambiamos el secreto del JWT, debemos encontrar una forma más fancy de mostrar el error cuando el usuario no tenga autorizacion.
+
+
+TODOS
+
+Cuando creamos una carrera debe tirarnos a la URL de la carrera creada.

@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react'
 import { Box, Text, Flex } from '@chakra-ui/layout'
 import { Button, Select } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
+// import Select from 'react-select'
+
+
+import FoodCard from '../../components/foodCard'
 import { useFindAllPublicFoods } from '../../lib/hooks'
 
 const CreateStrategy = () => {
@@ -20,6 +24,11 @@ const CreateStrategy = () => {
     setPickedFoodsIds([...pickedFoodsIds, { pickedFoodId }])
     setPickedFoods([...pickedFoods, pickedFood])
   }
+
+  const handlDeleteFood = (e, id) => {
+    e.preventDefault()
+    setPickedFoods(pickedFoods.filter((food) => food.id !== id))
+  }
   const data = router.query
 
   return (
@@ -37,7 +46,14 @@ const CreateStrategy = () => {
         </Select>
       </Box>
       <Text margin="20px"> Comidas Seleccionadas </Text>
-      {pickedFoods.map((food) => food.name)}
+      {pickedFoods.map((food) => (
+        <FoodCard
+          food={food}
+          key={food.id}
+          id={food.id}
+          handlDeleteFood={handlDeleteFood}
+        />
+      ))}
     </Box>
   )
 }
