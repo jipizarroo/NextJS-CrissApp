@@ -4,16 +4,15 @@ import { Button, Select } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 // import Select from 'react-select'
 
-
 import FoodCard from '../../components/foodCard'
 import { useFindAllPublicFoods } from '../../lib/hooks'
+import { foodsData } from '../../prisma/firstFoods'
 
 const CreateStrategy = () => {
+  const { publicfoods } = useFindAllPublicFoods()
   const router = useRouter()
   const [pickedFoodsIds, setPickedFoodsIds] = useState([])
   const [pickedFoods, setPickedFoods] = useState([])
-
-  const { publicfoods } = useFindAllPublicFoods()
 
   const handlePickedFood = (e) => {
     e.preventDefault()
@@ -21,8 +20,8 @@ const CreateStrategy = () => {
     const pickedFood = publicfoods.find(
       (element) => element.id === pickedFoodId
     )
-    setPickedFoodsIds([...pickedFoodsIds, { pickedFoodId }])
-    setPickedFoods([...pickedFoods, pickedFood])
+    setPickedFoodsIds([...pickedFoodsIds, { pickedFoodId, picked: true }])
+    setPickedFoods([...pickedFoods, { pickedFood, picked: true }])
   }
 
   const handlDeleteFood = (e, id) => {

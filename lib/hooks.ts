@@ -14,8 +14,10 @@ export const useMe = () => {
 export const useFindAllPublicFoods = () => {
   const { data, error } = useSWR('/publicfoods', fetcher)
 
+  const dataforSelect = data.map((food) => ({ ...food, selected: false }))
+
   return {
-    publicfoods: data as any,
+    publicfoods: dataforSelect as any,
     isLoading: !data && !error,
     isError: error,
   }

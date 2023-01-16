@@ -40,3 +40,6 @@ El error que estabamos teniendo en el signup, era pq cambiamos el secreto del JW
 TODOS
 
 Cuando creamos una carrera debe tirarnos a la URL de la carrera creada.
+
+
+https://github.com/prisma/prisma/discussions/4399 => estamos teniendo el error de tener muchas instancias de Prisma abiertas, tenemos q fixear esto :)
