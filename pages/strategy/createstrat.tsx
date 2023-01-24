@@ -14,14 +14,30 @@ const CreateStrategy = () => {
   const [pickedFoodsIds, setPickedFoodsIds] = useState([])
   const [pickedFoods, setPickedFoods] = useState([])
 
+  // I do not like the way this function, is way to big for what it does,
+  // should consider doing react-select since it can hold multiple selections.
   const handlePickedFood = (e) => {
     e.preventDefault()
     const pickedFoodId = Number(e.target.value)
     const pickedFood = publicfoods.find(
       (element) => element.id === pickedFoodId
     )
-    setPickedFoodsIds([...pickedFoodsIds, { pickedFoodId, picked: true }])
-    setPickedFoods([...pickedFoods, { pickedFood, picked: true }])
+
+    const isSelected = () => {
+      const selected = pickedFoods.find((food) => food.id === pickedFoodId)
+      if (selected) {
+        pickedFood.selected = false
+        setPickedFoods(pickedFoods.filter((food) => food.id !== pickedFoods.id))
+        setPickedFoodsIds(
+          pickedFoodsIds.filter((foodId) => foodId.id !== pickedFoodsIds.id)
+        )
+      } else {
+        pickedFood.selected = true
+        setPickedFoodsIds([...pickedFoodsIds, pickedFoodsIds])
+        setPickedFoods([...pickedFoods, pickedFood])
+      }
+    }
+    isSelected()
   }
 
   const handlDeleteFood = (e, id) => {
@@ -45,7 +61,7 @@ const CreateStrategy = () => {
         </Select>
       </Box>
       <Text margin="20px"> Comidas Seleccionadas </Text>
-      {pickedFoods.map((food) => (
+      {pickedFoods?.map((food) => (
         <FoodCard
           food={food}
           key={food.id}
