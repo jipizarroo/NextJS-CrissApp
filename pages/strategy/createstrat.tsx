@@ -13,6 +13,9 @@ const CreateStrategy = () => {
   const router = useRouter()
   const [pickedFoodsIds, setPickedFoodsIds] = useState([])
   const [pickedFoods, setPickedFoods] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+
+  const data = router.query
 
   // I do not like the way this function, is way to big for what it does,
   // should consider doing react-select since it can hold multiple selections.
@@ -44,7 +47,12 @@ const CreateStrategy = () => {
     e.preventDefault()
     setPickedFoods(pickedFoods.filter((food) => food.id !== id))
   }
-  const data = router.query
+
+  const handleSubmitStrat = async (e) => {
+    e.preventDefault()
+    setIsLoading(true)
+    console.log(data)
+  }
 
   return (
     <Box width="100vw" height="100vh" bg="green">
@@ -69,6 +77,15 @@ const CreateStrategy = () => {
           handlDeleteFood={handlDeleteFood}
         />
       ))}
+      <Box>
+        <Button
+          bg="green.500"
+          sx={{ '&:hover': { bg: 'green.300' } }}
+          onClick={handleSubmitStrat}
+        >
+          Crear Estrategia
+        </Button>
+      </Box>
     </Box>
   )
 }

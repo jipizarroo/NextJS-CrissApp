@@ -42,4 +42,15 @@ TODOS
 Cuando creamos una carrera debe tirarnos a la URL de la carrera creada.
 
 
+GUIA PARA CREAR ESTRATEGIA =>
+Usuario corre 4 horas => hora tiene marca más grande => desglozar cada 15min if possible
+
+Calculo cada 30min es el excel
+
+
+FOODS =>
+El usuario va a tener un tener que llenar un formulario para poder agregar una comida
+Existiran ejemplos genericos para rapides.
+
+
 https://github.com/prisma/prisma/discussions/4399 => estamos teniendo el error de tener muchas instancias de Prisma abiertas, tenemos q fixear esto :)

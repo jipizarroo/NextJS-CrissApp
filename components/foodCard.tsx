@@ -4,13 +4,16 @@ import { AiOutlineCloseCircle } from 'react-icons/ai'
 const FoodCard = ({ food, handlDeleteFood, id }) => {
   return (
     <Box id={id} width="300px" height="max-content" background="blue">
-      <Flex minWidth="max-content" alignItems="end">
-        <Box margin="8px 8px 0 0" cursor="pointer">
-          <AiOutlineCloseCircle
-            size={25}
-            onClick={(e) => handlDeleteFood(e, food.id)}
-          />
-        </Box>
+      <Flex
+        minWidth="max-content"
+        justifyContent="end"
+        cursor="pointer"
+        padding="8px 8px 0 0"
+      >
+        <AiOutlineCloseCircle
+          size={25}
+          onClick={(e) => handlDeleteFood(e, food.id)}
+        />
       </Flex>
       <Box padding="10px">
         {food.brand} - {food.name}

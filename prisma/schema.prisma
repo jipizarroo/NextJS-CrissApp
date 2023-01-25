@@ -7,6 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum ROLE_TYPES {
+  ADMIN
+  USER
+}
+
 model User {
   id           Int            @id @default(autoincrement())
   createdAt    DateTime       @default(now())
@@ -50,29 +55,24 @@ model PublicFoods {
 }
 
 model Races {
-  id           Int            @id @default(autoincrement())
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-  name         String
-  stages       Json
-  belongsToId  Int
-  belongsTo    User           @relation(fields: [belongsToId], references: [id])
-  isUserAdmin  Boolean        @default(false)
-  UserStrategy UserStrategy[]
+  id              Int            @id @default(autoincrement())
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  name            String
+  stages          Json
+  belongsToUserId Int
+  belongsToUser   User           @relation(fields: [belongsToUserId], references: [id])
+  isUserAdmin     Boolean        @default(false)
+  UserStrategy    UserStrategy[]
 }
 
 model UserStrategy {
-  id            Int      @id @default(autoincrement())
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  foodGroup     Json
-  belongsToId   Int
-  belongsTo     User     @relation(fields: [belongsToId], references: [id])
-  belongsToRace Races    @relation(fields: [racesId], references: [id])
-  racesId       Int
-}
-
-enum ROLE_TYPES {
-  ADMIN
-  USER
+  id              Int      @id @default(autoincrement())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  foodGroup       Json
+  belongsToUserId Int
+  belongsToUser   User     @relation(fields: [belongsToUserId], references: [id])
+  belongsToRace   Races    @relation(fields: [belongsToRaceId], references: [id])
+  belongsToRaceId Int
 }
