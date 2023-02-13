@@ -7,8 +7,8 @@ export default validateRoute(async (req, res) => {
       data: {
         name: req.body.name,
         stages: req.body.stages,
-        belongsTo: {
-          connect: { id: req.body.belongsTo },
+        belongsToUser: {
+          connect: { id: req.body.belongsToUser },
         },
       },
     })

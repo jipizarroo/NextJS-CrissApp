@@ -16,7 +16,7 @@ const CreateRaceForm = () => {
   const [isLoading, setIsLoading] = useState(false)
 
   const { user } = useMe()
-  const belongsTo = user?.id
+  const belongsToUser = user?.id
 
   const router = useRouter()
 
@@ -32,11 +32,11 @@ const CreateRaceForm = () => {
     e.preventDefault()
     setIsLoading(true)
 
-    await createRaceAPI({ name, stages, belongsTo })
+    await createRaceAPI({ name, stages, belongsToUser })
 
     setIsLoading(false)
 
-    // router.push('/races')
+    router.push('/races')
   }
 
   return (

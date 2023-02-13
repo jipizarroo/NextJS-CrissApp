@@ -21,8 +21,8 @@ CREATE TABLE "Foods" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "name" TEXT NOT NULL,
-    "brand" TEXT NOT NULL,
-    "unit" TEXT NOT NULL,
+    "brand" TEXT,
+    "unit" TEXT,
     "grams" DOUBLE PRECISION NOT NULL,
     "calories" DOUBLE PRECISION NOT NULL,
     "carbs" DOUBLE PRECISION NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE "Races" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "name" TEXT NOT NULL,
     "stages" JSONB NOT NULL,
-    "belongsToId" INTEGER NOT NULL,
+    "belongsToUserId" INTEGER NOT NULL,
     "isUserAdmin" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Races_pkey" PRIMARY KEY ("id")
@@ -67,8 +67,8 @@ CREATE TABLE "UserStrategy" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "foodGroup" JSONB NOT NULL,
-    "belongsToId" INTEGER NOT NULL,
-    "racesId" INTEGER NOT NULL,
+    "belongsToUserId" INTEGER NOT NULL,
+    "belongsToRaceId" INTEGER NOT NULL,
 
     CONSTRAINT "UserStrategy_pkey" PRIMARY KEY ("id")
 );
@@ -80,10 +80,10 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 ALTER TABLE "Foods" ADD CONSTRAINT "Foods_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Races" ADD CONSTRAINT "Races_belongsToId_fkey" FOREIGN KEY ("belongsToId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Races" ADD CONSTRAINT "Races_belongsToUserId_fkey" FOREIGN KEY ("belongsToUserId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UserStrategy" ADD CONSTRAINT "UserStrategy_belongsToId_fkey" FOREIGN KEY ("belongsToId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "UserStrategy" ADD CONSTRAINT "UserStrategy_belongsToUserId_fkey" FOREIGN KEY ("belongsToUserId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UserStrategy" ADD CONSTRAINT "UserStrategy_racesId_fkey" FOREIGN KEY ("racesId") REFERENCES "Races"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "UserStrategy" ADD CONSTRAINT "UserStrategy_belongsToRaceId_fkey" FOREIGN KEY ("belongsToRaceId") REFERENCES "Races"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

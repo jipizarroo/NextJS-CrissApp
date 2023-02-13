@@ -6,8 +6,8 @@ export default validateRoute(async (req, res) => {
     const race = await prisma.userStrategy.create({
       data: {
         foodGroup: req.body.foodgroup,
-        belongsTo: {
-          connect: { id: req.body.belongsTo },
+        belongsToUser: {
+          connect: { id: req.body.belongsToUser },
         },
         belongsToRace: {
           connect: { id: req.body.belongsToRace },

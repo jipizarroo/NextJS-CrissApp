@@ -10,7 +10,7 @@ export const auth = (
 export const createRaceAPI = (body: {
   name: string
   stages: JSON
-  belongsTo: number
+  belongsToUser: number
 }) => {
   return fetcher('/races/createrace', body)
 }
